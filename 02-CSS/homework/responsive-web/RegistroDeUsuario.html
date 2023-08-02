@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Russo+One|Ubuntu" rel="stylesheet">
+  <link href="css/index.css" rel="stylesheet">
+
+  <title>Registro de Usuario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    label, input {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfGgXInAAAAAGc_5Q3SwMhCjfMmfIgwOB5QWVCx"></script>
+
+</head>
+<body>
+  <h1>Registro de Usuario</h1>
+  <form id="registro-form" onsubmit="onSubmit()">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" id="contrasena" name="contrasena" required>
+    <div class="g-recaptcha" data-sitekey="6LfGgXInAAAAAGc_5Q3SwMhCjfMmfIgwOB5QWVCx"></div>
+
+    <input type="submit" value="Registrarse">
+  </form>
+</body>
+<script>
+    function onSubmit() {
+      event.preventDefault(); // Evitar el envío del formulario por defecto
+  
+      grecaptcha.execute('YOUR_SITE_KEY', {action: 'submit'}).then(function(token) {
+        // Realizar validación del CAPTCHA y enviar el formulario si es exitoso
+        // Puedes usar AJAX para enviar el formulario al servidor
+        // Ejemplo de validación:
+        if (token) {
+          // CAPTCHA válido, enviar formulario
+          document.getElementById('registro-form').submit();
+        } else {
+          // CAPTCHA no válido, mostrar mensaje de error o tomar otra acción
+          alert('Por favor, completa el CAPTCHA correctamente.');
+        }
+      });
+    }
+  </script>
+  
+</html>
