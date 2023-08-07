@@ -23,5 +23,8 @@
       "testEnvironment": "jsdom"
    },
    "author": "",
-   "license": "ISC"
+   "license": "ISC",
+   "dependencies": {
+      "crypto-js": "^4.1.1"
+   }
 }

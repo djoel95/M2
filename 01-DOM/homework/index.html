@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <title>Henry</title>
     <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <script type="text/javascript" src="./DOMhomework.js" async></script>
+    
 </head>
 
 <body>
@@ -12,15 +14,75 @@
         <a href="https://www.soyhenry.com/" target="_blank_"><img src="./assets/henry.png" /></a>
         <span>DOM Homework</span>
     </div>
-    <h1>To-Do App</h1>
+
+    <h1>Mi-App</h1>
     <div><span id="createdBy">Aplicación creada por:</span></div>
     <div id="container">
         <div id="inputContainer">
             <input type="text" id="toDoInput" placeholder="Descripción To-Do..." />
-            <div id="addButton"><span>AGREGAR</span></div>
+            <div id="addButton" style="padding: 10px ;"><span>AGREGAR</span></div>
         </div>
         <div id="toDoContainer"></div>
     </div>
+
+    <h1>Encriptador/Desencriptador</h1>
+    <div class="contenedor">
+        <div class="columna">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre"><br>
+          <label for="numero">Número:</label>
+          <input type="text" id="numero"><br>
+          <button id="encriptarButton" class="boton">Encriptar</button>
+        </div>
+        <div class="columna">
+          <label for="descripcionEncriptada">Resultado Encriptado:</label>
+          <input type="text" id="descripcionEncriptada" disabled><br>
+          <label for="descripcionEncriptada">Código:</label>
+          <input type="text" id="descripcion"><br>
+          <button id="desencriptarButton" class="boton">Desencriptar</button>
+        </div>
+      </div>
+      
+        <script>
+            // Clave de encriptación (debe tener 32 caracteres)
+            var clave = "clavesecreta1234567890abcdef";
+        
+            // Función para encriptar el contenido
+            function encriptar() {
+              var nombre = document.getElementById("nombre").value;
+              var numero = document.getElementById("numero").value;
+              var descripcion = nombre + " - " + numero;
+        
+              // Encriptar utilizando AES
+              var descripcionEncriptada = CryptoJS.AES.encrypt(descripcion, clave).toString();
+        
+              document.getElementById("descripcionEncriptada").value = descripcionEncriptada;
+              document.getElementById("resultadoEncriptacion").innerText = "Resultado de la encriptación: " + descripcionEncriptada;
+            }
+        
+            // Función para desencriptar el contenido
+            function desencriptar() {
+              var descripcionEncriptada = document.getElementById("descripcionEncriptada").value;
+        
+              // Verificar si el campo de entrada de código no está vacío
+              if (descripcionEncriptada.trim() === "") {
+                return;
+              }
+        
+              // Desencriptar utilizando AES
+              var bytesDesencriptados = CryptoJS.AES.decrypt(descripcionEncriptada, clave);
+              var descripcion = bytesDesencriptados.toString(CryptoJS.enc.Utf8);
+        
+              // Separar el nombre y el número de la descripción desencriptada
+              var separador = " - ";
+              var nombre = descripcion.split(separador)[0];
+              var numero = descripcion.split(separador)[1];
+        
+              document.getElementById("nombre").value = nombre;
+              document.getElementById("numero").value = numero;
+              document.getElementById("descripcion").value = descripcion;
+            }
+          </script>
 </body>
 
 </html>

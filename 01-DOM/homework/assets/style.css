@@ -1,20 +1,40 @@
 body {
   background-color: rgb(232, 246, 255);
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-top: 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("./Buho3.jpg");
+  background-size: cover;
+  background-position: center;
+  animation: zoom-background 0.5s linear;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow-x:hidden;
+  overflow-y: scroll;
+  scrollbar-color: deeppink;
+  scrollbar-width: thin;
+  -webkit-animation: zoom-background 0.5s linear;
+}
+
+label {
+  font-size: 24px;
+  color: rgb(9, 8, 8);
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  padding: 5px;
 }
 
 #header {
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: #428fbb;
   height: 56px;
-  /* padding-left: 15px; */
+  padding-left: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,15 +48,19 @@ body {
 
 #header a {
   padding-left: 15px;
+  color: white;
+  text-decoration: none;
 }
-
 
 #container {
   background-color: #428fbb;
-  box-shadow: 2px 2px 5px#000;
+  box-shadow: 2px 2px 5px #000;
   width: 50%;
   min-width: 700px;
   border-radius: 5px;
+  margin-top: 100px;
+  padding: 20px;
+  color: rgb(9, 8, 8);
 }
 
 #inputContainer {
@@ -56,17 +80,26 @@ body {
 }
 
 #addButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  margin-left: 10px;
-  border-radius: 4px;
+  background-color: #428fbb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
-  height: 35px;
-  background: #0160A2;
-  color: #FFF;
-  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px #000000;
+  transition: all 0.3s ease-in-out;
+}
+
+#addButton:hover {
+  background-color: #000000;
+  box-shadow: 0 0 15px #000000;
+  transition: all 0.3s ease-in-out;
 }
 
 #toDoContainer {
@@ -93,6 +126,7 @@ body {
 .toDoShell span {
   width: 90%;
 }
+
 .completeText {
   color: lightgrey;
   text-decoration: line-through;
@@ -100,4 +134,136 @@ body {
 
 .completeCheckbox {
   transform: scale(1.8);
+}
+
+h1 {
+  background-color: #428fbb;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+
+#slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+#slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#slider img:not(:first-child) {
+  opacity: 0;
+}
+
+/* Cambiar el color de la barra de desplazamiento */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #040000;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #250101;
+  border-radius: 6px;
+}
+
+/* Agregar una sombra a la barra de desplazamiento */
+body::-webkit-scrollbar-thumb {
+  background-color: #040404;
+  border-radius: 6px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Cambiar el tamaño de la barra de desplazamiento */
+body::-webkit-scrollbar {
+  width: 22
+px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+
+element.style {
+  align-content: center;
+  background-color: white;
+  color: black;
+  display: flex;
+  padding: 2px;
+}
+
+input {
+  align-content: center;
+  background-color: white;
+  color: black;
+  display: flex;
+  padding: 2px;
+}
+
+.boton {
+  background-color: #428fbb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px #000000;
+  transition: all 0.3s ease-in-out;
+}
+
+.boton:hover {
+  background-color: #000000;
+  box-shadow: 0 0 15px #000000;
+  transition: all 0.3s ease-in-out;
+}
+
+.label {
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 5px #000;
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  align-items: center;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+}
+
+.columna label,
+.columna input {
+  margin-bottom: 10px;
 }

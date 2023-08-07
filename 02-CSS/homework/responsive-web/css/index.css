@@ -226,37 +226,38 @@ footer {
   width: 100%;
 }
 .home .music-images img {
-  width: 28%;
+  display: flex;
+  width: 20%;
   margin: 20px 2.5%;
   border-radius: 20px;
   height: 100%;
 }
-.home .musica-nueva {
+.musica-nueva {
   padding: 15px;
 }
-.home .musica-nueva h3 {
+.musica-nueva h3 {
   margin-top: 11px;
 }
-.home .musica-nueva p {
+.musica-nueva p {
   margin-top: 13px;
 }
-.home .actual {
+.actual {
   margin-top: 60px;
   border-top: 1px solid #dee2e6;
   padding: 50px 60px;
   display: flex;
   justify-content: center;
 }
-.home .actual .actual-text {
+.actual .actual-text {
   width: 50%;
 }
-.home .actual .actual-text h3 {
+.actual .actual-text h3 {
   margin-bottom: 10px;
 }
-.home .actual .actual-text p {
+.actual .actual-text p {
   margin-bottom: 26px;
 }
-.home .actual .actual-text .btn {
+.actual .actual-text .btn {
   text-align: center;
   background-color: lightpink;
   border: none;
@@ -266,16 +267,16 @@ footer {
   text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.5);
   box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
 }
-.home .actual .actual-text .btn:hover {
+.actual .actual-text .btn:hover {
   text-shadow: 0px 0px 10px #ff0000;
   box-shadow: 0px 0px 20px #ff0000;
 }
-.home .actual .actual-img {
+.actual .actual-img {
   width: 46%;
   margin-left: 4%;
   padding: 10px;
 }
-.home .actual .actual-img img {
+.actual .actual-img img {
   width: 100%;
   height: auto;
   border-radius: 10px;
@@ -312,4 +313,9 @@ footer {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+}
+@media (max-width: 600px) {
+  .music-images .musica-nueva .intro .intro2 .actual-img .actual .nav .navegation {
+    flex-direction: column;
+  }
 }
