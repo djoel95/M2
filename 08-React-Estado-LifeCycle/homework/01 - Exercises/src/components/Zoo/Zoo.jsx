@@ -1,27 +1,33 @@
-import React from "react";
-import Animals from "../Animals/Animals";
-// eslint-disable-next-line no-unused-vars
-import Species from "../Species/Species";
-import styledZoo from "./Zoo.module.css";
+import React, { useEffect, useState } from 'react';
+import Animals from './Animals/Animals.jsx';
+import Species from './Species/Species.jsx';
+import styles from './Zoo.module.css';
 
-
-
-export default function Zoo() {
-  const [zoo, setZoo] = React.useState({
-    zooName: "",
+const Zoo = () => {
+  const [zoo, setZoo] = useState({
+    zooName: '',
     animals: [],
     species: [],
     allAnimals: [],
   });
 
-  const handleInputChange = (event) => {
-    setZoo({ ...zoo, zooName: event.target.value });
-  };
+  useEffect(() => {
+    fetch('http://localhost:3001/zoo')
+      .then((res) => res.json())
+      .then((data) =>
+        setZoo({
+          ...zoo,
+          animals: data.animals,
+          species: data.species,
+          allAnimals: data.animals,
+        })
+      )
+      .catch((error) => console.log(error));
+  }, []);
 
-  const handleSpecies = (event) => {
-    const selectedSpecies = event.target.value;
+  const handleSpecies = (specie) => {
     const filteredAnimals = zoo.allAnimals.filter(
-      (animal) => animal.species === selectedSpecies
+      (animal) => animal.specie === specie
     );
     setZoo({ ...zoo, animals: filteredAnimals });
   };
@@ -30,33 +36,28 @@ export default function Zoo() {
     setZoo({ ...zoo, animals: zoo.allAnimals });
   };
 
-  React.useEffect(() => {
-    fetch("./db.json")
-      .then((res) => res.json())
-      .then((data) =>
-        setZoo({
-          ...zoo,
-          animals: data.zoo.animals,
-          species: data.zoo.species,
-          allAnimals: data.zoo.animals,
-        })
-      )
-      .catch((error) => console.log(error));
-  }, []);
+  const handleInputChange = (event) => {
+    setZoo({ ...zoo, zooName: event.target.value });
+  };
 
   return (
-    <div>
-      <label >Zoo Name:</label>
-      <input value={zoo.zooName} onChange={handleInputChange} />
+    <div className={styles.container}>
+      <label htmlFor="zooName">Zoo Name:</label>
+      <input
+        type="text"
+        id="zooName"
+        value={zoo.zooName}
+        onChange={handleInputChange}
+      />
       <h1>{zoo.zooName}</h1>
-      <div>
-        <Species
-          species={zoo.species}
-          handleSpecies={handleSpecies}
-          handleAllSpecies={handleAllSpecies}
-        />
-        <Animals animals={zoo.animals} />
-      </div>
+      <Species
+        species={zoo.species}
+        handleSpecies={handleSpecies}
+        handleAllSpecies={handleAllSpecies}
+      />
+      <Animals animals={zoo.animals} />
     </div>
   );
-}
+};
+
+export default Zoo;
