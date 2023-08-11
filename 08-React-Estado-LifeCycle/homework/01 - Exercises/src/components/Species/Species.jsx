@@ -1,18 +1,17 @@
-import React from "react";
-import styledSpecies from "./Species.module.css";
+import React from 'react';
 
-export default function Species({ species, handleSpecies, handleAllSpecies }) {
+const Species = (props) => {
   return (
     <div>
       <h2>Species</h2>
-      {species.map((specie, index) => (
-        <button key={index} onClick={handleSpecies} value={specie}>
+      {props.species.map((specie, index) => (
+        <button key={index} onClick={() => props.handleSpecies(specie)}>
           {specie}
         </button>
       ))}
-      <button onClick={handleAllSpecies}>All Animals</button>
-      <button onClick={handleAllSpecies}>Anfibios</button>
-      <button onClick={handleAllSpecies}>Mamiferos</button>
+      <button onClick={props.handleAllSpecies}>All Animals</button>
     </div>
   );
-}
+};
+
+export default Species;
